@@ -1,0 +1,37 @@
+<div class='container'>
+    <div class='well'>
+        <h1>Ocorrências de zumbis</h1>
+    </div>
+    <div>
+        <table class='table' ng-if='vm.ocorrencias.length > 0'>
+            <thead>
+                <th>Cep</th>
+                <th>Bairro</th>
+                <th>Número</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat='item in vm.ocorrencias'>
+                    <td>{{ item.cep }}</td>
+                    <td> {{ item.bairro | uppercase }}</td>
+                    <td>{{ item.numero }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form name='form' ng-init='vm.txtFocus()'>
+        <div class='form-group'>
+            <label>CEP</label>                         
+            <input  type='text' id='cep' ng-model='vm.item.cep' ng-pattern='/^[0-9]{5}-[0-9]{3}$/' class='form-control'  />
+        </div>
+        <div class='form-group'>
+            <label>Bairro</label>
+            <input type='text' ng-model='vm.item.bairro' ng-minlength='4' class='form-control'   />
+        </div>
+        <div class='form-group'>
+            <label>Número de ocorrências</label>
+            <input  type='text' class='form-control' ng-model='vm.item.numero'  />
+        </div>
+        <ng-zumbi-submit submit='vm.adcionar(vm.item)'></ng-zumbi-submit>
+        <button class="btn btn-success" ng-click='vm.limpar(vm.item)'>Limpar</button>
+    </form>
+</div>
